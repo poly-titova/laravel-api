@@ -14,7 +14,7 @@ class DeskController extends Controller
      */
     public function index()
     {
-        return DeskResource::collection(Desk::all());
+        return DeskResource::collection(Desk::with('lists')->get());
     }
 
     /**
@@ -30,7 +30,7 @@ class DeskController extends Controller
      */
     public function show(string $id)
     {
-        return new DeskResource(Desk::findOfFail($id));
+        return new DeskResource(Desk::with('lists')->findOrFail($id));
     }
 
     /**
